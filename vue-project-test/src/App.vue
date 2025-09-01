@@ -1,45 +1,40 @@
-
-
 <template>
   <div>
-    <h1 class="main">主页面</h1>
-    <!-- 父传子 -->
-    <!-- <MyBtn></MyBtn> -->
-    <!-- 当标签用 但 html 不区分大小写   -->
-     <!-- html中用中间- 来连接两个单词 -->
-      <!-- <my-btn></my-btn> -->
-       <!-- 在传入props时  除了直接写字符串传入外  都需要用v-bind : -->
-       <!-- <MyBtn :title=Register color="red"   :num="1" />
-       <MyBtn title="Login" color="blue">  </MyBtn>
-       <MyBtn title="logout">  </MyBtn> -->
+    <!-- 头部组件 -->
+    <my-header > 首页 </my-header>
+    <my-header > 我的 </my-header>
 
-       <p>名称: {{ goods.title }}</p>
-       <p>价格: {{ goods.price }}</p>
-
-       <myNum @getNum="addNum"></myNum>
+    <my-header >
+      <!-- 模板用于定义一个专用的结构
+       把这个模板内容 插入到插槽名字为 left的中 -->
+      <template v-slot:left>
+        <!-- 返回箭头 -->
+        <!-- <div>左侧内容</div> -->
+         <img src="./assets/logo.svg" width="20" alt="">
+      </template>
+      首页
+      <template v-slot:right>
+        右
+      </template>
+    </my-header>
   </div>
 
 </template>
 
+
 <script setup lang="ts">
+import MyHeader from './components/myHeader.vue'
 import { reactive } from 'vue';
 
-//局部注册  严格区分大小写 命名时候用小驼峰
-// import myBtn from './components/MyBtn.vue';
-let goods =reactive({
-    id: 1, title: '商品1', price: 100
-
-    // 收集到你要几件的那个数量的值   (子传给父)
-});
-
-function addNum(num: number) {
-  goods.price = num;
-  console.log(num);
-}
 
 </script>
 
+
 <style>
+*{
+  margin: 0;
+  padding: 0;
+}
 
 </style>
 

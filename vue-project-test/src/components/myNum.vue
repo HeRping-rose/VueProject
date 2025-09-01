@@ -9,13 +9,19 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-let num = ref(1);
-// 定义一个自定义事件
-let event =defineEmits(["getNum"])
+// let props = defineProps(['count']);
+let props = defineProps(['modelValue']); //子组件接收父组件传来的值 格式固定 V-model
+
+// let num = ref(props.count || 0);
+let num = ref(props.modelValue || 0);
+// 定义一个自定义事件  事件名保持一致可以简化
+// let event =defineEmits(["getNum"])
+let event =defineEmits(["update:modelValue"]) // 格式固定 V-model
 // 监听num的变化  当num变化时  把最新的值传给父组件
 watch(num,()=>{
   // 调用函数  ,携带数据回传   ,,父组件接收
-  event("getNum",num.value)
+  // event("getNum",num.value)
+  event("update:modelValue",num.value)
 })
 </script>
 
