@@ -23,4 +23,7 @@ app.use(router)
 // 3.在vue项目中使用第三方的elementplus组件库
 app.use(ElementPlus)
 
+// 全局变量 
+app.config.globalProperties.$serverpath = 'http://127.0.0.1:8000'
+
 app.mount('#app')

@@ -1,6 +1,5 @@
-
 <template>
-    <h1>店铺列表</h1>
+    <h1>食品列表</h1>
     <br>
     <el-table :data="tableData" style="width: 100%">
     <el-table-column label="Date" width="180">

@@ -58,8 +58,8 @@
              <el-icon><Briefcase /></el-icon>
             <span>食品管理</span>
           </template>
-            <el-menu-item index="4-1">添加食品</el-menu-item>
-            <el-menu-item index="4-2">食品管理</el-menu-item>
+            <el-menu-item index="/manage/addfood">添加食品</el-menu-item>
+            <el-menu-item index="/manage/foodlist">食品管理</el-menu-item>
         </el-sub-menu>
         <!-- <el-menu-item index="2">
           <el-icon><icon-menu /></el-icon>

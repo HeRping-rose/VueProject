@@ -20,7 +20,7 @@ const router = createRouter({
           component: () => import('@/pages/manage/managehome.vue'),
           name: 'managehome',
           meta: {
-            title: '首页'
+            title: ['']
           }
         },
         {
@@ -53,6 +53,23 @@ const router = createRouter({
           name: 'addshop',
           meta: {
             title: ['店铺管理','添加店铺']
+          }
+        },
+        // 食品管理
+        {
+          path: 'foodlist',
+          component: () => import('@/pages/manage/foodlist.vue'),
+          name: 'foodlist',
+          meta: {
+            title: ['食品管理','食品列表']
+          }
+        },
+        {
+          path: 'addfood',
+          component: () => import('@/pages/manage/addfood.vue'),
+          name: 'addfood',
+          meta: {
+            title: ['食品管理','添加食品']
           }
         }
       ]
