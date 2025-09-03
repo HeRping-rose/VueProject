@@ -56,8 +56,8 @@ class LoginView(APIView):
         refresh = RefreshToken.for_user(user)
         return Response({
             'msg': '登录成功',
-            'access': str(refresh.access_token),
-            'refresh': str(refresh),
+            'token': str(refresh.access_token),
+            # 'refresh': str(refresh),
             'user': UserSerializer(user).data
         })
 

@@ -53,8 +53,8 @@
             :src="scope.row.icon"
             fit="fill"
           ></el-image> -->
-          <!-- <img :src="'http://127.0.0.1:8000'+scope.row.icon" width="50px" > -->
-           <img :src=' $serverpath+scope.row.icon' width="50px" ></img>
+          <img :src="'http://127.0.0.1:8000'+scope.row.icon" width="50px" >
+           <!-- <img :src=' $serverpath+scope.row.icon' width="50px" ></img> -->
         </div>
       </template>
     </el-table-column>

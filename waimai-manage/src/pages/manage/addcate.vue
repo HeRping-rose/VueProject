@@ -76,7 +76,7 @@ const submitForm = async () => {
       formData.append('name', ruleForm.value.name as string);
       formData.append('description', ruleForm.value.description as string);
       if (selectFile.value) {
-        formData.append('icon', selectFile.value);
+        formData.append('icon', selectFile.value);  
       }
 
       //发请求 

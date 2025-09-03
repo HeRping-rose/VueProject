@@ -13,6 +13,20 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 const app = createApp(App)
 
+//路由守卫
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token')
+  if(to.path.includes('/manage') ) {
+    if(token) {
+      next()
+    } else {
+      next({ name: '/' })
+    }
+  } else {
+    next()
+  }
+})
+
 //注册所有图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)

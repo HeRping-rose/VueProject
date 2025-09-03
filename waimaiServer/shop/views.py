@@ -21,11 +21,21 @@ class ShopView(APIView):
             "data": serializer.data
         })
     def post(self, request):
+        print(request.data)
         serializer = ShopSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response({
+                "code": "1",
+                "msg": "成功",
+                "data": serializer.data
+            }, status=status.HTTP_201_CREATED)
+        return Response(
+            {
+                "code": "0",
+                "msg": "失败",
+                "data": serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
     
 
 # 食品视图

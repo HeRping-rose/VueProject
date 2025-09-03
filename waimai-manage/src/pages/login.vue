@@ -11,8 +11,8 @@
             class="demo-ruleForm"
             status-icon
         >
-            <el-form-item label="用户名" prop="name">
-                <el-input v-model="ruleForm.name"  aria-placeholder="请输入用户名"/>
+            <el-form-item label="用户名" prop="username">
+                <el-input v-model="ruleForm.username"  aria-placeholder="请输入用户名"/>
             </el-form-item>
             <el-form-item label="密码" prop="password">
                 <el-input v-model="ruleForm.password" type="password" aria-placeholder="请输入密码"/>
@@ -27,35 +27,62 @@
 </template>
 <script setup lang="ts">
 // import router from '@/router'
+// import axios from 'axios'
+import axios from '@/utils/http'
+import { log } from 'echarts/types/src/util/log.js'
 import type { FormInstance } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 interface RuleForm {
-  name: String,
+  username: String,
   password: String
 }
 const ruleForm = ref<RuleForm>({
-  name: '',
+  username: '',
   password: ''
 })
 const rules = reactive({
-    name: [
+    username: [
         { required: true, message: '请输入用户名', trigger: 'blur' },
         { min: 2, max: 10, message: 'Length should be 2 to 10', trigger: 'blur' },
     ],
     password: [
         { required: true, message: '请输入密码', trigger: 'blur' },
-        { min: 6, max: 20, message: 'Length should be 6 to 20', trigger: 'blur' },
+        { min: 2, max: 20, message: 'Length should be 2 to 20', trigger: 'blur' },
     ]
 })
 const ruleFormRef = ref<FormInstance>()
 let router = useRouter()
+interface Res {
+  user: User
+  msg: string
+  token: string
+}
+
+interface User {
+  avatar: string
+  email: string
+  id: number
+  nickname: string
+  phone: string
+  username: string
+}
 const submitForm = async () => {
-  await ruleFormRef.value?.validate((valid, fields) => {
+  await ruleFormRef.value?.validate(async (valid, fields) => {
     if (valid) {
       console.log('submit!')
+      let res:Res = await axios.post('/user/login/', ruleForm.value)
+
+      console.log(res);
+      
+
+      // router.push('/manage')
+      localStorage.setItem('token', res.token)
+      localStorage.setItem('user', JSON.stringify(res.user))
+
       router.push('/manage')
+
     } else {
       console.log('error submit!', fields)
     }

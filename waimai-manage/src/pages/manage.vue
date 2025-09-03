@@ -94,9 +94,13 @@
                 </span>
                 <template #dropdown>
                 <el-dropdown-menu>
+                    <el-dropdown-item>{{ username }}</el-dropdown-item>
+
                     <el-dropdown-item>设置</el-dropdown-item>
                     <el-dropdown-item>个人中心</el-dropdown-item>
-                    <el-dropdown-item>退出</el-dropdown-item>
+                    <el-dropdown-item
+                    @click="logout"
+                    >退出</el-dropdown-item>
                     <!-- <el-dropdown-item disabled>Action 4</el-dropdown-item>
                     <el-dropdown-item divided>Action 5</el-dropdown-item> -->
                 </el-dropdown-menu>
@@ -114,6 +118,17 @@
 
 <script lang="ts" setup>
 import { ArrowRight } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router';
+
+
+let username=localStorage.getItem('user')
+
+let router=useRouter()
+function logout(){
+  localStorage.removeItem('token')
+  localStorage.removeItem('user')
+  router.push('/')
+}
 </script>
 
 
